@@ -14,20 +14,36 @@ if (window.top !== window.self) {
         (function () {
             const i = document.createElement("img");
             i.src = "https://algoinde.ru/f/1231231.png?";
-            i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px;";
+            i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 1000px; transition: opacity 0.2s ease";
             console.log(i);
+            var t;
             function a() {
-              i.style.display = 'none';
-              setTimeout(b, 1000);
+              i.style.opacity = 0;
+              t = setTimeout(b, 1300);
             }
             function b() {
-              i.style.display = null;
-              setTimeout(a, 1000);
+              i.style.opacity = 1;
+              t = setTimeout(a, 1300);
             }
             setInterval(() => {
               i.src += 'a';
             }, 120000)
             b();
+            document.body.addEventListener('keypress', (e) => {
+              if(e.code == 'KeyD') {
+                if(t){
+                  clearTimeout(t);
+                  t = false;
+                }else
+                  b();
+              } 
+            })
+          
+            document.body.addEventListener('keypress', (e) => {
+              if(e.code == 'KeyS') {
+                i.style.opacity = +!i.style.opacity;
+              } 
+            })
             return i;
         })())
 
