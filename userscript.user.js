@@ -41,7 +41,7 @@ if (window.top !== window.self) {
           
             document.body.addEventListener('keypress', (e) => {
               if(e.code == 'KeyS') {
-                i.style.opacity = +!i.style.opacity;
+                i.style.opacity = (+i.style.opacity)?0:1;
               } 
             })
             return i;
